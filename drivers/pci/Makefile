@@ -49,3 +49,4 @@ obj-$(CONFIG_PCI_OCTEONTX) += pci_octeontx.o
 obj-$(CONFIG_PCIE_OCTEON) += pcie_octeon.o
 obj-$(CONFIG_PCIE_DW_SIFIVE) += pcie_dw_sifive.o
 obj-$(CONFIG_PCIE_UNIPHIER) += pcie_uniphier.o
+obj-$(CONFIG_PCIE_STARFIVE_JH7110) += pcie_starfive_jh7110.o
