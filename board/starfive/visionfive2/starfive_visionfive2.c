@@ -8,6 +8,8 @@
 #include <asm/io.h>
 #include <cpu_func.h>
 #include <linux/bitops.h>
+#include <asm/sections.h>
+#include <dm.h>
 
 #define JH7110_L2_PREFETCHER_BASE_ADDR		0x2030000
 #define JH7110_L2_PREFETCHER_HART_OFFSET	0x2000
@@ -37,4 +39,15 @@ int board_init(void)
 	enable_prefetcher();
 
 	return 0;
+}
+
+void *board_fdt_blob_setup(int *err)
+{
+	*err = 0;
+	if (IS_ENABLED(CONFIG_OF_SEPARATE) || IS_ENABLED(CONFIG_OF_BOARD)) {
+		if (gd->arch.firmware_fdt_addr)
+			return (ulong *)(uintptr_t)gd->arch.firmware_fdt_addr;
+	}
+
+	return (ulong *)&_end;
 }
